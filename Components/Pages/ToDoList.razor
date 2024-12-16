@@ -1,0 +1,81 @@
+@page "/todolist"
+@using SimpleToDoList.Models
+
+<div class="container mx-4">
+    <h1 class="mb-4">To-Do List</h1>
+
+    <div class="row mb-3">
+        <div class="col">
+            <div class="input-group">
+                <input type="text" 
+                       class="form-control" 
+                       placeholder="Enter new task..."
+                       @bind="newItemTitle"
+                       @bind:event="oninput"
+                       @onkeyup="@(e => HandleKeyPress(e))" />
+                <button class="btn btn-primary" @onclick="AddItem">Add Task</button>
+            </div>
+        </div>
+    </div>
+
+    @if (!todoItems.Any())
+    {
+        <p class="text-muted">No tasks yet. Add one above!</p>
+    }
+    else
+    {
+        <ul class="list-group">
+            @foreach (var item in todoItems) // Loop through the items in the list
+            {
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <div class="form-check">
+                        <input type="checkbox" 
+                               class="form-check-input" 
+                               @bind="item.IsCompleted" />
+                        <span class="@(item.IsCompleted ? "text-decoration-line-through" : "")">
+                            @item.Title
+                        </span>
+                    </div>
+                    <button class="btn btn-danger btn-sm" @onclick="() => DeleteItem(item)">
+                        Delete
+                    </button>
+                </li>
+            }
+        </ul>
+
+        <div class="mt-3">
+            <small class="text-muted">
+                @completedCount of @todoItems.Count items completed
+            </small>
+        </div>
+    }
+</div>
+
+@code {
+    private List<ToDoItem> todoItems = new();
+    private string newItemTitle = string.Empty;
+
+    private int completedCount => todoItems.Count(x => x.IsCompleted); //  Count of completed items
+
+    private void AddItem()
+    {
+        if (!string.IsNullOrWhiteSpace(newItemTitle))
+        {
+            todoItems.Add(new ToDoItem { Title = newItemTitle });
+            newItemTitle = string.Empty;  // Clear the input
+        }
+    }
+
+    private void DeleteItem(ToDoItem item)
+    {
+        todoItems.Remove(item);
+    }
+
+    private void HandleKeyPress(KeyboardEventArgs e) // Handle Enter key press
+    {
+        if (e.Key == "Enter")
+        {
+            AddItem();
+        }
+    }
+}

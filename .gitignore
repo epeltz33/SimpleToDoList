@@ -1,1 +1,73 @@
+ # Compiled output
+ /bin
+ /obj
+ /publish
+ /wwwroot/_framework/_bin
  
+ # Visual Studio files
+ .vs/
+ *.suo
+ *.user
+ *.sln
+ *.swp
+ *.vssscc
+ *.vsdsproj
+ *.csproj.user
+ *.vcxproj.user
+ *.vcxproj.filters
+ *.vcxproj.cache
+ 
+ # NuGet Packages
+ /packages
+ *.nupkg
+ *.snupkg
+ 
+ # Temporary files
+ *.tmp
+ *.bak
+ *.log
+ *.cache
+ [Bb]uild/
+ 
+ # User-specific files
+ *.userprefs
+ 
+ # Resource files
+ *.resources
+ 
+ # Test Results
+ TestResults/
+ _ReSharper*/
+ 
+ # Publish artifacts from Azure DevOps or other CI/CD
+ /drop
+ 
+ # Folder containing .NET local tools
+ .config/dotnet-tools.json
+ .config/tool-manifests/
+ 
+ # Ignore the .DS_Store file on macOS
+ .DS_Store
+ 
+ # Ignore Rider files
+ .idea/
+ *.iml
+ 
+ # Ignore vscode files
+ .vscode/
+ *.code-workspace
+ 
+ # Ignore node_modules if you're using npm or yarn for client-side libraries
+ node_modules/
+ 
+ # Ignore bower_components if you're using bower
+ bower_components/
+ 
+ # Ignore package-lock.json if you are using npm < 7
+ # !package-lock.json
+ 
+ # Ignore yarn.lock if you are using yarn < 2
+ # !yarn.lock
+ 
+ # Ignore .env files that may contain sensitive information
+ .env
